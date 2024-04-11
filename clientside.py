@@ -6,6 +6,7 @@ class Server:
 
 class Client:
     def __init__(self):
+        self.server = Server()
         pass
 
     # A method to connect to a server

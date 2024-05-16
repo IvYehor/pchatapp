@@ -1,3 +1,4 @@
+import json
 
 # A class to hold information for the messages
 class Message:

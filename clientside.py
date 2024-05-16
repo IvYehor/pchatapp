@@ -1,12 +1,7 @@
 import message
 
-class Server:
-    def __init__(self):
-        self.socket = 0
-
 class Client:
     def __init__(self):
-        self.server = Server()
         pass
 
     # A method to connect to a server
@@ -17,6 +12,20 @@ class Client:
     # A method to send a message to a server
     def SendMessage(self):
         pass
+
+    def Refresh(self):
+        pass
+    
+    # A method to disconnect
+    # Ends all the threads
+    def Disconnect(self):
+        pass
+
+
+
+
+
+
 
     # A thread for the meassages of other users
     # Calls ReceivedDisconnect, RecievedClose, RecivedMessage
@@ -36,7 +45,3 @@ class Client:
     def RecivedMessage(self):
         pass
 
-    # A method to disconnect
-    # Ends all the threads
-    def Disconnect(self):
-        pass

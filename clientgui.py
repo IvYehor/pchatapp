@@ -15,6 +15,7 @@ class ClientGUI:
         self.servername=ft.Text(value="Server1")
         self.tsend = ft.TextField(label="Enter message", hint_text="Type here...")
         self.tip = ft.TextField(label="Enter Server IP", hint_text="192.168.0.0")
+        self.tport = ft.TextField(label="Enter Server port", hint_text="8001")
         self.tname = ft.TextField(label="Enter your name", hint_text="John Smith")
 
     def addMessage(self, msg):
@@ -38,7 +39,7 @@ class ClientGUI:
     def setUsers(self, users):
         self.users.clear()
         for u in users:
-            self.messages.append(ft.Text(value=u))
+            self.users.append(ft.Text(value=u))
         self.page.update()
 
     def setServerName(self, name):
@@ -48,6 +49,9 @@ class ClientGUI:
 
     def getIP(self):
         return self.tip.value
+    
+    def getPort(self):
+        return self.tport.value
     
     def getName(self):
         return self.tname.value
@@ -63,6 +67,7 @@ class ClientGUI:
         ccol=ft.Column(
             [ft.Row([
                 self.tip,
+                self.tport,
                 bconnect
             ]), 
             self.tname]

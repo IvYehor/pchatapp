@@ -2,7 +2,7 @@ import message
 
 class Server:
     def __init__(self):
-        self.clients = []
+        pass
 
     # Starts client accept thread
     def Start(self):

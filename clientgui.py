@@ -2,7 +2,9 @@ import flet as ft
 from message import Message
 
 class ClientGUI:
-    def __init__(self, connect_event, send_event, disconnect_event, refresh_event):
+    def __init__(self, connect_event, send_event, disconnect_event, refresh_event, logger):
+        self.logger = logger
+        
         self.connect_event = connect_event
         self.send_event = send_event
         self.disconnect_event = disconnect_event

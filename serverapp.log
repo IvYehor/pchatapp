@@ -1,0 +1,12 @@
+In Thread-2 (ProcessCommands), ProcessCommands line 76 at 2024-06-06 14:12:44,642: Starting at 0.0.0.0:8001
+In Thread-3 (AcceptClientthread), AcceptClientthread line 94 at 2024-06-06 14:12:44,643: started accepting, socket:<socket.socket fd=4, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('0.0.0.0', 8001)>
+In Thread-2 (ProcessCommands), ProcessCommands line 76 at 2024-06-06 14:13:33,206: Starting at 0.0.0.0:8001
+In Thread-3 (AcceptClientthread), AcceptClientthread line 94 at 2024-06-06 14:13:33,207: started accepting, socket:<socket.socket fd=4, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('0.0.0.0', 8001)>
+In Thread-3 (AcceptClientthread), AcceptClientthread line 117 at 2024-06-06 14:14:22,636: New user: ('127.0.0.1', 54780) John
+In Thread-3 (AcceptClientthread), AcceptClientthread line 119 at 2024-06-06 14:14:22,636: Sending to new user: ["Chat room 1", [], ["John"]]
+In Thread-4 (ClientThread), ClientThread line 147 at 2024-06-06 14:14:33,225: New message from user John: Hey there
+In Thread-4 (ClientThread), ClientThread line 135 at 2024-06-06 14:14:46,739: Client ('127.0.0.1', 54780) John closed
+In Thread-2 (ProcessCommands), ProcessCommands line 79 at 2024-06-06 14:18:06,353: Starting at 0.0.0.0:8001
+In Thread-3 (AcceptClientthread), AcceptClientthread line 97 at 2024-06-06 14:18:06,354: started accepting, socket:<socket.socket fd=4, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('0.0.0.0', 8001)>
+In Thread-2 (ProcessCommands), ProcessCommands line 79 at 2024-06-06 14:18:10,713: Starting at 0.0.0.0:8001
+In Thread-3 (AcceptClientthread), AcceptClientthread line 97 at 2024-06-06 14:18:10,714: started accepting, socket:<socket.socket fd=4, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('0.0.0.0', 8001)>

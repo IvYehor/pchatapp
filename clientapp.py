@@ -3,15 +3,20 @@ from clientside import *
 from clientsocket import SocketClient
 from message import Message
 from clientmock import MockClient
-
+import logging
 
 class ClientApp:
-    def __init__(self, client):
+    def __init__(self, client, logger):
         self.client = client
-        self.gui = ClientGUI(self.on_connect, self.on_send, self.on_disconnect, self.on_refresh)
+        self.gui = ClientGUI(self.on_connect, self.on_send, self.on_disconnect, self.on_refresh, logger)
+        self.logger = logger
 
     def on_connect(self, e):
-        s = self.client.Connect(self.gui.getIP(), int(self.gui.getPort()), self.gui.getName())
+        try:
+            port = int(self.gui.getPort())
+        except ValueError:
+            return
+        s = self.client.Connect(self.gui.getIP(), port, self.gui.getName())
         if s[0]:
             self.gui.setServerName(s[1])
             self.gui.setMessages(s[2])
@@ -19,6 +24,8 @@ class ClientApp:
 
     def on_send(self, e):
         m = self.client.SendMessage(self.gui.getMsg())
+        if m is None:
+            return
         self.gui.addMessage(m)
 
     def on_refresh(self, e):
@@ -40,5 +47,23 @@ class ClientApp:
     def run(self):
         self.gui.run()
 
-c = ClientApp(SocketClient())
-c.run()
+
+if __name__ == "__main__":
+    l = logging.getLogger()
+    l.setLevel(logging.DEBUG)
+
+    fh = logging.FileHandler('clientapp.log')
+    sh = logging.StreamHandler()
+
+    formatter = logging.Formatter('In %(funcName)s line %(lineno)d at %(asctime)s: %(message)s')
+
+    fh.setLevel(logging.DEBUG)
+    fh.setFormatter(formatter)
+    sh.setLevel(logging.ERROR)
+    sh.setFormatter(formatter)
+
+    l.addHandler(fh)
+    l.addHandler(sh)
+
+    c = ClientApp(SocketClient(l), l)
+    c.run()

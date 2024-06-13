@@ -11,6 +11,7 @@ import os
 import protocol
 
 from serverside import *
+import serversocket
 
 class SocketServer(Server):
     def __init__(self, logger):
@@ -18,12 +19,16 @@ class SocketServer(Server):
         # socket, name
         self.clients = {}
         self.messages = []
+        
         self.taskqueue = queue.Queue()
         self.messagequeue = queue.Queue()
+        
         self.socket = None
         self.socketMutex = threading.Lock()
+        
         self.servname = "Chat room 1"
         self.port = 8001
+        
         self.logger = logger
 
     def Send_(self, client, msg):

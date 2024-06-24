@@ -11,43 +11,41 @@ import os
 import protocol
 
 from serverside import *
-import serversocket
+from serversocket import *
+from serversocketinterface import ServerSocketInt
+
+# error return None
+# no error return anything else
 
 class SocketServer(Server):
-    def __init__(self, logger):
+    def __init__(self, logger, server_sock : ServerSocketInt):
         super().__init__()
         # socket, name
-        self.clients = {}
         self.messages = []
         
         self.taskqueue = queue.Queue()
         self.messagequeue = queue.Queue()
         
-        self.socket = None
+        self.server_sock = server_sock
         self.socketMutex = threading.Lock()
         
         self.servname = "Chat room 1"
         self.port = 8001
         
         self.logger = logger
-
-    def Send_(self, client, msg):
-        if self.socket is None:
-            return 1
-        client.send(protocol.get_header(msg))
-        client.send(msg.encode("utf-8"))
-        return 0
     
-    def Recv_(self, client):
-        if client is None:
-            return None
-        header = client.recv(8).decode('utf-8')
-        if not header:
-            return None
-        datastr = client.recv(int(header)).decode("utf-8")
-        if not datastr:
-            return None
-        return datastr
+    # Starts client accept thread
+    def Start(self):
+        self.uithread = threading.Thread(target=self.UI)
+        self.uithread.start()
+        self.processthread = threading.Thread(target=self.ProcessCommands)
+        self.processthread.start()
+        self.uithread.join()
+        self.processthread.join()
+        
+    def log(self, msg):
+        self.logger.info(msg)
+        self.messagequeue.put(msg)
 
     def UI(self):
         while True:
@@ -68,92 +66,106 @@ class SocketServer(Server):
             else:
                 print("No such command")
 
+    def Send_(self, addr, msg):
+        if self.server_sock.isSocketNone():
+            return None
+        if self.server_sock.Send(addr, protocol.get_header(msg)) is None:
+            return None
+        if self.server_sock.Send(addr, msg.encode("utf-8")) is None:
+            return None
+        return True
+    
+    def Recv_(self, addr):
+        header = self.server_sock.Recv(addr, 8)
+        if header is None:
+            return None
+        return self.server_sock.Recv(addr, int(header))
+
     def ProcessCommands(self):
         while True:
             cmd = self.taskqueue.get(block=True)
             if cmd == "start":
                 with self.socketMutex:
-                    self.socket = socket.socket()
-                    try:
-                        self.socket.bind(("0.0.0.0", self.port))
-                    except socket.error:
-                        self.logger.error("Couldn't bind to " + str(("0.0.0.0", self.port)))
+                    if not self.server_sock.Start("0.0.0.0", self.port):
+                        self.log("Could not start at 0.0.0.0:" + str(self.port) + " " + self.servname)
                         continue
-                    self.socket.listen()
                 
-                self.messagequeue.put("Starting at 0.0.0.0:" + str(self.port))
-                self.logger.info("Starting at 0.0.0.0:" + str(self.port))
+                self.log("Starting at 0.0.0.0:" + str(self.port) + " " + self.servname)
+
                 self.acceptthread = threading.Thread(target=self.AcceptClientthread)
                 self.acceptthread.start()
+
             elif cmd == "close":
-                self.socket.close()
-    # Starts client accept thread
-    def Start(self):
-        self.uithread = threading.Thread(target=self.UI)
-        self.uithread.start()
-        self.processthread = threading.Thread(target=self.ProcessCommands)
-        self.processthread.start()
-        self.uithread.join()
-        self.processthread.join()
-        
+                self.server_sock.Close()
+    
 
     # Accepts client connections and starts separate client threads
     def AcceptClientthread(self):
-        self.messagequeue.put("started accepting, socket:" + str(self.socket))
-        self.logger.info("started accepting, socket:" + str(self.socket))
+        self.log("started accepting, socket")
         while True:
-            (conn, addr) = self.socket.accept()
-
-            try:
-                clname = self.Recv_(conn)
-            except socket.error:
-                self.logger.error("Couldn't recieve client name")
-                continue
-
-            self.clients[addr] = (conn, clname, threading.Thread(target=self.ClientThread, args=(addr,)))
-
-            data = self.servname, self.messages, list([cl[1] for addr, cl in self.clients.items()])
-            jdata = json.dumps(data)
+            self.AcceptClient()
             
-            try:
-                self.Send_(conn, jdata)
-            except socket.error:
-                self.logger.error("Couldn't send data to client")
-                self.clients.pop(addr)                
-                continue
+    
+    def AcceptClient(self):
+        (conn, addr) = self.server_sock.Accept()
+ 
+        h = self.server_sock.RecvCL(conn, 8)
+        if h is None:
+            self.log("Couldn't recieve client name")
+            return 
+        
+        clname = self.server_sock.RecvCL(conn, int(h))
+        if clname is None:
+            self.log("Couldn't recieve client name")
+            return 
 
-            self.messagequeue.put("New user: " + str(addr) + " " + clname)
-            self.logger.info("New user: " + str(addr) + " " + clname)
-            self.messagequeue.put("Sending to new user: " + str(jdata))
-            self.logger.debug("Sending to new user: " + str(jdata))
+        self.server_sock.AddClient(addr, conn, clname, threading.Thread(target=self.ClientThread, args=(addr,)))
 
-            self.clients[addr][2].start()
-            
+        data = self.servname, self.messages, self.server_sock.getClientNames()
+        jdata = json.dumps(data)
+        
+        
+        if self.Send_(addr, jdata) is None:
+            self.logger.error("Couldn't send data to client")
+            self.server_sock.CloseClient(addr)        
+            return
+
+        self.log("New user: " + str(addr) + " " + clname)
+        self.log("Sending to new user: " + str(jdata))
+
+        self.server_sock.getClientThread(addr).start()
+
     # Receives messages from clients, sends the messages to all the other clients, calls RecivedMessage and RecievedDisconnect
     def ClientThread(self, addr):
         while True:
-            try:
-                req = self.Recv_(self.clients[addr][0])
-            except socket.error:
-                self.logger.error("Couldn't recieve request from client")
-                self.clients[addr][0].close()
-                self.clients.pop(addr)
+            if self.ClientProcessRequests(addr) is None:
                 return
-            if req is None:
-                self.clients[addr][0].close()
-                self.logger.info("Client " + str(addr) + " " + self.clients[addr][1] + " closed")
-                self.messagequeue.put("Client " + str(addr) + " " + self.clients[addr][1] + " closed")
-                self.clients.pop(addr)
-                return
-            if req == 'refresh':
-                data = self.servname, self.messages, list([cl[1] for addr, cl in self.clients.items()])
-                jdata = json.dumps(data)
-                self.Send_(self.clients[addr][0], jdata)
-            elif req == 'message':
-                msg = self.Recv_(self.clients[addr][0])
-                self.messages.append((self.clients[addr][1], msg, (1,1,1)))
-                self.messagequeue.put("New message from user " + self.clients[addr][1] + ": " + msg)
-                self.logger.info("New message from user " + self.clients[addr][1] + ": " + msg)
+
+    def ClientProcessRequests(self, addr):
+        req = self.Recv_(addr)
+        
+        if req is None:
+            self.server_sock.CloseClient(addr)
+            self.log("Client " + str(addr) + " closed")
+            return None
+        if req == 'refresh':
+            data = self.servname, self.messages, self.server_sock.getClientNames()
+            jdata = json.dumps(data)
+            self.Send_(addr, jdata)
+        elif req == 'message':
+            msg = self.Recv_(addr)
+            if msg is None:
+                self.server_sock.CloseClient(addr)
+                self.log("Client " + str(addr) + " closed")
+                return None
+            self.messages.append((self.server_sock.getClientName(addr), msg, (1,1,1)))
+            self.log("New message from user " + self.server_sock.getClientName(addr) + ": " + msg)
+        else:
+            self.server_sock.CloseClient(addr)
+            self.log("Invalid response from client")
+            self.log("Client " + str(addr) + " closed")
+            return None
+        return True
 
 if __name__ == "__main__":
     l = logging.getLogger()
@@ -168,5 +180,5 @@ if __name__ == "__main__":
 
     l.addHandler(fh)
 
-    serv = SocketServer(l)
+    serv = SocketServer(l, ServerSocket(l))
     serv.Start()

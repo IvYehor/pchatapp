@@ -10,3 +10,43 @@ In Thread-2 (ProcessCommands), ProcessCommands line 79 at 2024-06-06 14:18:06,35
 In Thread-3 (AcceptClientthread), AcceptClientthread line 97 at 2024-06-06 14:18:06,354: started accepting, socket:<socket.socket fd=4, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('0.0.0.0', 8001)>
 In Thread-2 (ProcessCommands), ProcessCommands line 79 at 2024-06-06 14:18:10,713: Starting at 0.0.0.0:8001
 In Thread-3 (AcceptClientthread), AcceptClientthread line 97 at 2024-06-06 14:18:10,714: started accepting, socket:<socket.socket fd=4, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('0.0.0.0', 8001)>
+In Thread-2 (ProcessCommands), ProcessCommands line 84 at 2024-06-24 10:49:08,589: Starting at 0.0.0.0:8001
+In Thread-2 (ProcessCommands), ProcessCommands line 84 at 2024-06-24 10:50:09,114: Starting at 0.0.0.0:8001
+In Thread-3 (AcceptClientthread), AcceptClientthread line 96 at 2024-06-24 10:50:09,115: started accepting, socket
+In Thread-2 (ProcessCommands), ProcessCommands line 84 at 2024-06-24 10:51:06,677: Starting at 0.0.0.0:8001
+In Thread-3 (AcceptClientthread), AcceptClientthread line 96 at 2024-06-24 10:51:06,678: started accepting, socket
+In Thread-2 (ProcessCommands), ProcessCommands line 84 at 2024-06-24 10:51:59,089: Starting at 0.0.0.0:8001
+In Thread-3 (AcceptClientthread), AcceptClientthread line 96 at 2024-06-24 10:51:59,089: started accepting, socket
+In Thread-2 (ProcessCommands), ProcessCommands line 84 at 2024-06-24 10:52:34,164: Starting at 0.0.0.0:8001
+In Thread-3 (AcceptClientthread), AcceptClientthread line 96 at 2024-06-24 10:52:34,165: started accepting, socket
+In Thread-2 (ProcessCommands), ProcessCommands line 84 at 2024-06-24 11:00:30,902: Starting at 0.0.0.0:8002
+In Thread-3 (AcceptClientthread), AcceptClientthread line 96 at 2024-06-24 11:00:30,903: started accepting, socket
+In Thread-2 (ProcessCommands), ProcessCommands line 84 at 2024-06-24 11:03:14,629: Starting at 0.0.0.0:8004 Chat room 1
+In Thread-3 (AcceptClientthread), AcceptClientthread line 96 at 2024-06-24 11:03:14,630: started accepting, socket
+In Thread-3 (AcceptClientthread), AcceptClientthread line 121 at 2024-06-24 11:03:27,707: New user: ('127.0.0.1', 35212) jo
+In Thread-3 (AcceptClientthread), AcceptClientthread line 123 at 2024-06-24 11:03:27,707: Sending to new user: ["Chat room 1", [], ["jo"]]
+In Thread-2 (ProcessCommands), log line 45 at 2024-06-24 11:09:24,386: Starting at 0.0.0.0:8005 Chat room 1
+In Thread-3 (AcceptClientthread), log line 45 at 2024-06-24 11:09:24,386: started accepting, socket
+In Thread-3 (AcceptClientthread), log line 45 at 2024-06-24 11:09:35,048: New user: ('127.0.0.1', 56812) jo
+In Thread-3 (AcceptClientthread), log line 45 at 2024-06-24 11:09:35,048: Sending to new user: ["Chat room 1", [], ["jo"]]
+In Thread-2 (ProcessCommands), log line 45 at 2024-06-24 11:10:20,333: Starting at 0.0.0.0:8006 Chat room 1
+In Thread-3 (AcceptClientthread), log line 45 at 2024-06-24 11:10:20,334: started accepting, socket
+In Thread-3 (AcceptClientthread), log line 45 at 2024-06-24 11:10:36,571: New user: ('127.0.0.1', 35466) jo
+In Thread-3 (AcceptClientthread), log line 45 at 2024-06-24 11:10:36,572: Sending to new user: ["Chat room 1", [], ["jo"]]
+In Thread-4 (ClientThread), ClientThread line 139 at 2024-06-24 11:10:44,232: Client ('127.0.0.1', 35466) closed
+In Thread-3 (AcceptClientthread), log line 45 at 2024-06-24 11:10:51,153: New user: ('127.0.0.1', 34344) jo
+In Thread-3 (AcceptClientthread), log line 45 at 2024-06-24 11:10:51,153: Sending to new user: ["Chat room 1", [], ["jo"]]
+In Thread-2 (ProcessCommands), log line 46 at 2024-06-24 11:35:10,411: Starting at 0.0.0.0:8001 Chat room 1
+In Thread-3 (AcceptClientthread), log line 46 at 2024-06-24 11:35:10,411: started accepting, socket
+In Thread-3 (AcceptClientthread), AcceptClientthread line 125 at 2024-06-24 11:35:25,740: Couldn't send data to client
+In Thread-2 (ProcessCommands), log line 46 at 2024-06-24 11:41:46,955: Starting at 0.0.0.0:8001 Chat room 1
+In Thread-3 (AcceptClientthread), log line 46 at 2024-06-24 11:41:46,956: started accepting, socket
+In Thread-2 (ProcessCommands), log line 46 at 2024-06-24 11:44:56,680: Starting at 0.0.0.0:8001 Chat room 1
+In Thread-3 (AcceptClientthread), log line 46 at 2024-06-24 11:44:56,681: started accepting, socket
+In Thread-3 (AcceptClientthread), AcceptClientthread line 125 at 2024-06-24 11:45:12,599: Couldn't send data to client
+In Thread-2 (ProcessCommands), log line 46 at 2024-06-24 11:46:59,904: Starting at 0.0.0.0:8001 Chat room 1
+In Thread-3 (AcceptClientthread), log line 46 at 2024-06-24 11:46:59,905: started accepting, socket
+In Thread-3 (AcceptClientthread), log line 46 at 2024-06-24 11:47:27,629: New user: ('127.0.0.1', 53492) jo
+In Thread-3 (AcceptClientthread), log line 46 at 2024-06-24 11:47:27,629: Sending to new user: ["Chat room 1", [], ["jo"]]
+In Thread-4 (ClientThread), log line 46 at 2024-06-24 11:47:32,119: New message from user jo: efefce
+In Thread-4 (ClientThread), log line 46 at 2024-06-24 11:47:33,812: Client ('127.0.0.1', 53492) closed

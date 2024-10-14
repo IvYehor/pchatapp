@@ -1,0 +1,49 @@
+In __init__ line 54 at 2024-10-14 14:58:24,868: Using selector: EpollSelector
+In __get_assets_dir_path line 358 at 2024-10-14 14:58:24,869: Assets path configured: /home/yehor/Projects/python/chatappgit2/chatapp/client/assets
+In __init__ line 20 at 2024-10-14 14:58:24,869: Creating new PubSubHub instance
+In __init__ line 20 at 2024-10-14 14:58:24,869: Creating new PubSubHub instance
+In start line 73 at 2024-10-14 14:58:24,869: Starting up UDS server on /tmp/r5U5eLleKT
+In app_async line 171 at 2024-10-14 14:58:24,870: Flet app has started...
+In on_app_startup line 133 at 2024-10-14 14:58:24,870: App URL: /tmp/r5U5eLleKT
+In __locate_and_unpack_flet_view line 378 at 2024-10-14 14:58:24,870: Starting Flet View app...
+In __locate_and_unpack_flet_view line 466 at 2024-10-14 14:58:24,870: Flet View found in: /home/yehor/.flet/bin/flet-0.22.0
+In handle_connection line 89 at 2024-10-14 14:58:25,365: Connected new TCP client
+In __on_message line 122 at 2024-10-14 14:58:25,365: _on_message: {"action":"registerWebClient","payload":{"pageName":"tmp/r5U5eLleKT","pageRoute":"/","pageWidth":"1.0","pageHeight":"1.0","windowWidth":"1280.0","windowHeight":"720.0","windowTop":"23.0","windowLeft":"26.0","isPWA":"false","isWeb":"false","isDebug":"false","platform":"linux","platformBrightness":"light","media":"{\"padding\":{\"top\":0.0,\"right\":0.0,\"bottom\":0.0,\"left\":0.0},\"view_padding\":{\"top\":0.0,\"right\":0.0,\"bottom\":0.0,\"left\":0.0},\"view_insets\":{\"top\":0.0,\"right\":0.0,\"bottom\":0.0,\"left\":0.0}}","sessionId":""}}
+In __send line 178 at 2024-10-14 14:58:25,365: __send: {"action":"registerWebClient","payload":{"session":{"id":"","controls":{"page":{"i":"page","t":"page","p":"","c":[],"route":"/","width":"1.0","height":"1.0","windowwidth":"1280.0","windowheight":"720.0","windowtop":"23.0","windowleft":"26.0","pwa":"false","web":"false","debug":"false","platform":"linux","platformBrightness":"light","media":"{\"padding\":{\"top\":0.0,\"right\":0.0,\"bottom\":0.0,\"left\":0.0},\"view_padding\":{\"top\":0.0,\"right\":0.0,\"bottom\":0.0,\"left\":0.0},\"view_insets\":{\"top\":0.0,\"right\":0.0,\"bottom\":0.0,\"left\":0.0}}"}}},"error":"","appInactive":false}}
+In _process_command line 85 at 2024-10-14 14:58:25,365: _process_command: get ['page', 'route'] {}
+In _process_command line 85 at 2024-10-14 14:58:25,365: _process_command: get ['page', 'pwa'] {}
+In _process_command line 85 at 2024-10-14 14:58:25,366: _process_command: get ['page', 'web'] {}
+In _process_command line 85 at 2024-10-14 14:58:25,366: _process_command: get ['page', 'debug'] {}
+In _process_command line 85 at 2024-10-14 14:58:25,366: _process_command: get ['page', 'platform'] {}
+In _process_command line 85 at 2024-10-14 14:58:25,366: _process_command: get ['page', 'platformBrightness'] {}
+In _process_command line 85 at 2024-10-14 14:58:25,366: _process_command: get ['page', 'media'] {}
+In _process_command line 85 at 2024-10-14 14:58:25,366: _process_command: get ['page', 'width'] {}
+In _process_command line 85 at 2024-10-14 14:58:25,366: _process_command: get ['page', 'height'] {}
+In _process_command line 85 at 2024-10-14 14:58:25,366: _process_command: get ['page', 'windowWidth'] {}
+In _process_command line 85 at 2024-10-14 14:58:25,366: _process_command: get ['page', 'windowHeight'] {}
+In _process_command line 85 at 2024-10-14 14:58:25,366: _process_command: get ['page', 'windowTop'] {}
+In _process_command line 85 at 2024-10-14 14:58:25,366: _process_command: get ['page', 'windowLeft'] {}
+In _process_command line 85 at 2024-10-14 14:58:25,366: _process_command: get ['page', 'clientIP'] {}
+In _process_command line 85 at 2024-10-14 14:58:25,366: _process_command: get ['page', 'clientUserAgent'] {}
+In on_session_created line 235 at 2024-10-14 14:58:25,366: App session started
+In _process_command line 85 at 2024-10-14 14:58:25,368: _process_command: set ['page'] {'title': 'Chat App'}
+In _process_command line 85 at 2024-10-14 14:58:25,369: _process_command: add [] {'to': 'page', 'at': '0'}
+In _process_command line 85 at 2024-10-14 14:58:25,369: _process_command: add [] {'to': 'page', 'at': '1'}
+In __send line 178 at 2024-10-14 14:58:25,369: __send: {"action":"pageControlsBatch","payload":[{"action":"updateControlProps","payload":{"props":[{"i":"page","title":"Chat App"}]}},{"action":"addPageControls","payload":{"controls":[{"t":"view","i":"_1","p":"page","c":["_2","_9"],"at":"0"},{"t":"container","i":"_2","p":"_1","c":["_3"],"bgcolor":"#BDB1A2","border":"{\"l\":{\"w\":1,\"c\":\"#000000\"},\"t\":{\"w\":1,\"c\":\"#000000\"},\"r\":{\"w\":1,\"c\":\"#000000\"},\"b\":{\"w\":1,\"c\":\"#000000\"}}","margin":"0","padding":"20"},{"t":"column","i":"_3","p":"_2","c":["_4","_8"],"n":"content"},{"t":"row","i":"_4","p":"_3","c":["_5","_6","_7"]},{"t":"textfield","i":"_5","p":"_4","c":[],"hinttext":"192.168.0.0","label":"Enter Server IP"},{"t":"textfield","i":"_6","p":"_4","c":[],"hinttext":"8001","label":"Enter Server port"},{"t":"elevatedbutton","i":"_7","p":"_4","c":[],"text":"Connect"},{"t":"textfield","i":"_8","p":"_3","c":[],"hinttext":"John Smith","label":"Enter your name"},{"t":"container","i":"_9","p":"_1","c":["_10"],"bgcolor":"#BDB1A2","border":"{\"l\":{\"w\":1,\"c\":\"#000000\"},\"t\":{\"w\":1,\"c\":\"#000000\"},\"r\":{\"w\":1,\"c\":\"#000000\"},\"b\":{\"w\":1,\"c\":\"#000000\"}}","margin":"0","padding":"20"},{"t":"row","i":"_10","p":"_9","c":["_11","_20"],"n":"content"},{"t":"column","i":"_11","p":"_10","c":["_12","_13","_17"]},{"t":"text","i":"_12","p":"_11","c":[],"value":"Server1"},{"t":"column","i":"_13","p":"_11","c":["_14"]},{"t":"column","i":"_14","p":"_13","c":["_15","_16"]},{"t":"text","i":"_15","p":"_14","c":[],"value":"User1"},{"t":"text","i":"_16","p":"_14","c":[],"value":"message"},{"t":"row","i":"_17","p":"_11","c":["_18","_19"]},{"t":"textfield","i":"_18","p":"_17","c":[],"hinttext":"Type here...","label":"Enter message"},{"t":"elevatedbutton","i":"_19","p":"_17","c":[],"text":"Send"},{"t":"column","i":"_20","p":"_10","c":["_21","_23","_24"]},{"t":"column","i":"_21","p":"_20","c":["_22"]},{"t":"text","i":"_22","p":"_21","c":[],"value":"User1"},{"t":"elevatedbutton","i":"_23","p":"_20","c":[],"text":"Disconnect"},{"t":"elevatedbutton","i":"_24","p":"_20","c":[],"text":"Refresh"}],"trimIDs":[]}},{"action":"addPageControls","payload":{"controls":[{"t":"offstage","i":"_25","p":"page","c":[],"at":"1"}],"trimIDs":[]}}]}
+In __send_loop line 115 at 2024-10-14 14:58:25,369: sent to TCP: 598
+In __send_loop line 115 at 2024-10-14 14:58:25,370: sent to TCP: 2224
+In __on_message line 122 at 2024-10-14 14:58:25,490: _on_message: {"action":"pageEventFromWeb","payload":{"eventTarget":"page","eventName":"app_lifecycle_state_change","eventData":"resume"}}
+In on_event_async line 486 at 2024-10-14 14:58:25,490: page.on_event_async: page app_lifecycle_state_change resume
+In __on_message line 122 at 2024-10-14 14:58:25,509: _on_message: {"action":"updateControlProps","payload":{"props":[{"i":"page","windowwidth":"1280.0","windowheight":"720.0","windowtop":"23.0","windowleft":"26.0","windowminimized":"false","windowmaximized":"false","windowfocused":"false","windowfullscreen":"false"}]}}
+In __on_message line 122 at 2024-10-14 14:58:25,509: _on_message: {"action":"pageEventFromWeb","payload":{"eventTarget":"page","eventName":"window_event","eventData":"focus"}}
+In on_event_async line 486 at 2024-10-14 14:58:25,510: page.on_event_async: page change [{"i":"page","windowwidth":"1280.0","windowheight":"720.0","windowtop":"23.0","windowleft":"26.0","windowminimized":"false","windowmaximized":"false","windowfocused":"false","windowfullscreen":"false"}]
+In on_event_async line 486 at 2024-10-14 14:58:25,510: page.on_event_async: page window_event focus
+In __on_message line 122 at 2024-10-14 14:58:25,658: _on_message: {"action":"updateControlProps","payload":{"props":[{"i":"page","width":"1280.0","height":"720.0","windowwidth":"1280.0","windowheight":"720.0","windowtop":"23.0","windowleft":"26.0","windowminimized":"false","windowmaximized":"false","windowfocused":"false","windowfullscreen":"false"}]}}
+In __on_message line 122 at 2024-10-14 14:58:25,659: _on_message: {"action":"pageEventFromWeb","payload":{"eventTarget":"page","eventName":"resize","eventData":"1280.0,720.0"}}
+In on_event_async line 486 at 2024-10-14 14:58:25,659: page.on_event_async: page change [{"i":"page","width":"1280.0","height":"720.0","windowwidth":"1280.0","windowheight":"720.0","windowtop":"23.0","windowleft":"26.0","windowminimized":"false","windowmaximized":"false","windowfocused":"false","windowfullscreen":"false"}]
+In on_event_async line 486 at 2024-10-14 14:58:25,659: page.on_event_async: page resize 1280.0,720.0
+In close_flet_view line 331 at 2024-10-14 14:58:27,250: Flet View process 21799
+In close line 182 at 2024-10-14 14:58:27,250: Closing connection...
+In close line 184 at 2024-10-14 14:58:27,250: Disconnecting all pages...
+In on_event_async line 486 at 2024-10-14 14:58:27,251: page.on_event_async: page disconnect 
+In close line 190 at 2024-10-14 14:58:27,251: Shutting down thread pool...
